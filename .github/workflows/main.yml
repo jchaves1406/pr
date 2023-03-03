@@ -39,7 +39,7 @@ jobs:
           sudo rm google-chrome-stable_current_amd64.deb
           wget https://chromedriver.storage.googleapis.com/110.0.5481.77/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
-          chromedriver_linux64.zip
+          sudo rm chromedriver_linux64.zip
           google-chrome --version
           
       - name: Instala las dependencias necesarias en tu sistema
