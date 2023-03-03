@@ -25,15 +25,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
           
       - name: selenium & beautifulsoup4
         run: |
@@ -44,9 +36,10 @@ jobs:
         run: |
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i google-chrome-stable_current_amd64.deb
+          sudo rm google-chrome-stable_current_amd64.deb
           wget https://chromedriver.storage.googleapis.com/110.0.5481.77/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
-          sudo rm google-chrome-stable_current_amd64.deb
+          chromedriver_linux64.zip
           google-chrome --version
           
       - name: Instala las dependencias necesarias en tu sistema
