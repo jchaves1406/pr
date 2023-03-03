@@ -42,8 +42,14 @@ jobs:
           sudo dpkg -i google-chrome-stable_current_amd64.deb
           wget https://chromedriver.storage.googleapis.com/110.0.5481.77/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
-          ls
           sudo rm google-chrome-stable_current_amd64.deb
           google-chrome --version
           pwd
+          sudo apt-get install -y xvfb
+          export DISPLAY=:99
+          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+          chmod +x chromedriver.sh
+          ./chromedriver.sh
           python3 selenium_src.py
+          ls
+          
