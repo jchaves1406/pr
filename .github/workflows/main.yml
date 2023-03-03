@@ -34,22 +34,35 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
-      - name: pruebas
+          
+      - name: selenium & beautifulsoup4
         run: |
           pip install selenium
           pip install beautifulsoup4
+          
+      - name: Instalacion de Google Chrome y chromedriver
+        run: |
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo dpkg -i google-chrome-stable_current_amd64.deb
           wget https://chromedriver.storage.googleapis.com/110.0.5481.77/chromedriver_linux64.zip
           unzip chromedriver_linux64.zip
           sudo rm google-chrome-stable_current_amd64.deb
           google-chrome --version
-          pwd
+          
+      - name: Instala las dependencias necesarias en tu sistema
+        run: |
           sudo apt-get install -y xvfb
-          export DISPLAY=:99
-          Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
-          chmod +x chromedriver.sh
-          ./chromedriver.sh
+          sudo apt-get install -y x11-utils
+          sudo apt-get install -y xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
+          
+      - name: Permisos chromedriver
+        run: |
+          sudo chown root:root chromedriver
+          sudo chmod +x chromedriver
+          
+      - name: virtualdisplay
+        run: |
+          pip install pyvirtualdisplay
           python3 selenium_src.py
           ls
           
