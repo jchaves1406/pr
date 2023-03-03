@@ -46,3 +46,4 @@ jobs:
           sudo rm google-chrome-stable_current_amd64.deb
           google-chrome --version
           pwd
+          python3 selenium_src.py
