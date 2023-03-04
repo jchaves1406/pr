@@ -61,8 +61,6 @@ for casa in casas:
 df = pd.DataFrame(casas_df)
 
 fecha_actual = datetime.datetime.now().strftime("%Y-%m-%d")
-
-df = pd.DataFrame(casas_df)
 df.insert(0, 'FechaDescarga', fecha_actual)
 
 # Renombrar columnas
