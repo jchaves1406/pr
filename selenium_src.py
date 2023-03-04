@@ -23,3 +23,6 @@ page = BeautifulSoup(driver.page_source, "html.parser")
 # page
 bloques = page.find_all("div", attrs={"class": "MuiCardContent-root"})
 print(bloques[0])
+
+driver.quit()
+display.stop()
