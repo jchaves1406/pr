@@ -27,10 +27,11 @@ jobs:
 
 
           
-      - name: selenium & beautifulsoup4
+      - name: selenium & beautifulsoup4 & pandas
         run: |
           pip install selenium
           pip install beautifulsoup4
+          pip install pandas
           
       - name: Instalacion de Google Chrome y chromedriver
         run: |
