@@ -24,14 +24,21 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-
-          
-      - name: selenium & beautifulsoup4 & pandas
+         
+      - name: Instalacion de dependencias necesarias en Python
         run: |
           pip install selenium
           pip install beautifulsoup4
           pip install pandas
+          pip install pyvirtualdisplay
+          pip install flake8
+          pip install pytest
+          
+      - name: Instalacion de dependencias necesarias para pyvirtualdisplay
+        run: |
+          sudo apt-get install -y xvfb
+          sudo apt-get install -y x11-utils
+          sudo apt-get install -y xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
           
       - name: Instalacion de Google Chrome y chromedriver
         run: |
@@ -42,20 +49,22 @@ jobs:
           unzip chromedriver_linux64.zip
           google-chrome --version
           
-      - name: Instala las dependencias necesarias en tu sistema
-        run: |
-          sudo apt-get install -y xvfb
-          sudo apt-get install -y x11-utils
-          sudo apt-get install -y xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic
-          
       - name: Permisos chromedriver
         run: |
           sudo chown root:root chromedriver
           sudo chmod +x chromedriver
           
-      - name: virtualdisplay
+      - name: Verificación de sintaxis y estilo del código adecuado en Python
         run: |
-          pip install pyvirtualdisplay
-          python3 selenium_src.py
+          flake8 web_sc_functions.py
+          flake8 test_web_sc.py
+        
+      - name: Pruebas unitarias 
+        run: |
+          pytest-3
+        
+      - name: Ejecucion de la aplicación
+        run: |
+          python3 web_sc_functions.py
           ls
           
