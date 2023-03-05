@@ -61,7 +61,7 @@ jobs:
         
       - name: Pruebas unitarias 
         run: |
-          pytest-3
+          pytest
         
       - name: Ejecucion de la aplicación
         run: |
