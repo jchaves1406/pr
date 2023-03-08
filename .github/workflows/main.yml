@@ -68,10 +68,6 @@ jobs:
         run: |
           pytest
         
-      - name: Instalacion de zappa
-        run: |
-          pip install zappa
-          
       - name: Configure aws credentials                  
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -85,6 +81,7 @@ jobs:
         
       - name: Ejecucion de la aplicación
         run: |
+          pip install zappa
           zappa deploy dev
           ls
           
