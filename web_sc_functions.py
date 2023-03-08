@@ -10,7 +10,7 @@ def descargar_pagina(url):
     display = Display(visible=0, size=(1920, 1080))
     display.start()
     # Ruta del driver en el archivo yml
-    ubicacion = "/home/ubuntu/Downloads/zappa/chromedriver"
+    ubicacion = "/home/runner/work/pr/pr/chromedriver"
 
     servicio = Service(ubicacion)
     options = webdriver.ChromeOptions()
@@ -24,7 +24,7 @@ def descargar_pagina(url):
 
     # escribir el contenido de la página en el archivo
     archivo_html = datetime.datetime.now().strftime('%Y-%m-%d') + '.html'
-    with open("/home/ubuntu/Downloads/zappa/"+archivo_html,
+    with open("/home/runner/work/pr/pr"+archivo_html,
               "w", encoding='utf-8') as f:
         f.write(driver.page_source)
 
