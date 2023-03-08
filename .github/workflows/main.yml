@@ -86,5 +86,7 @@ jobs:
           python3 lambda_html.py
           python3 lambda_csv.py
           ls
+          
+          cat 2023-03-08.csv
 
           
