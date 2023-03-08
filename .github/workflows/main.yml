@@ -90,7 +90,9 @@ jobs:
           pip install pandas
           pip install boto3
           pip install xvfbwrapper
+          pip install xvfbwrapper
           sudo apt-get install xvfb
+          sudo apt install python3-xvfbwrapper 
           
           zappa deploy dev
           zappa invoke lambda_html.lambda_handler
