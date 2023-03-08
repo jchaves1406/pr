@@ -82,18 +82,9 @@ jobs:
         
       - name: Ejecucion de la aplicación
         run: |
-          pip install zappa
-          source env/bin/activate   
-          pip install beautifulsoup4
-          pip install selenium
-          pip install pyvirtualdisplay
-          pip install pandas
-          pip install boto3
 
           python3 lambda_html.py
+          python3 lambda_csv.py
           ls
-          zappa deploy dev
- 
-          zappa invoke lambda_csv.save_csv
-          ls
+
           
