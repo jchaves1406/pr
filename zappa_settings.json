@@ -21,8 +21,10 @@
             }
         ],
         "environment_variables": {
-            "BUCKET_NAME": "casas-final-xxx"
+            "BUCKET_NAME": "casas-final-xxx",
+            "DISPLAY": ":99"
         },
+        "xvfb": true,
         "slim_handler": true
     }
 }
