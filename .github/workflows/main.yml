@@ -89,6 +89,7 @@ jobs:
           pip install pyvirtualdisplay
           pip install pandas
           pip install boto3
+          sudo apt-get install xvfb
 
           zappa deploy dev
  
