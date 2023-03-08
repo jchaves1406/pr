@@ -85,6 +85,6 @@ jobs:
         
       - name: Ejecucion de la aplicación
         run: |
-
+          zappa deploy dev
           ls
           
