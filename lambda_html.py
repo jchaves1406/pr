@@ -3,7 +3,8 @@ import boto3
 import xvfbwrapper
 from selenium import webdriver
 import datetime
-
+from selenium.webdriver.chrome.service import Service
+from pyvirtualdisplay import Display
 
 
 s3 = boto3.client('s3')
@@ -25,28 +26,29 @@ def lambda_handler(event, context):
     }
 
 def descargar_pagina(url):
-    xvfb = xvfbwrapper.Xvfb()
-    xvfb.start()
-
+    display = Display(visible=0, size=(1920, 1080))
+    display.start()
+    # Ruta del driver en el archivo yml
     ubicacion = "/home/ubuntu/Downloads/zappa/chromedriver"
-    servicio = webdriver.chrome.service.Service(ubicacion)
+
+    servicio = Service(ubicacion)
     options = webdriver.ChromeOptions()
     options.add_argument('--no-sandbox')
-    options.add_argument('user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3')
     options.add_argument('--disable-dev-shm-usage')
     options.add_argument('--disable-gpu')
     options.add_argument('--remote-debugging-port=9222')
-    options.add_argument('--headless') # agregar esta línea para que la navegación sea sin interfaz gráfica
     driver = webdriver.Chrome(service=servicio, options=options)
 
     driver.get(url)
 
+    # escribir el contenido de la página en el archivo
     archivo_html = datetime.datetime.now().strftime('%Y-%m-%d') + '.html'
-    with open("/home/ubuntu/Downloads/zappa/"+archivo_html, "w", encoding='utf-8') as f:
+    with open("/home/ubuntu/Downloads/zappa/"+archivo_html,
+              "w", encoding='utf-8') as f:
         f.write(driver.page_source)
 
     driver.quit()
-    xvfb.stop()
+    display.stop()
 
 # zappa deploy dev
 # test: zappa invoke apps.f
