@@ -33,7 +33,8 @@ jobs:
         run: |
           pip install virtualenv
           virtualenv -p=python3.8 env
-          source env/bin/activate   
+          source env/bin/activate
+          pwd
          
       - name: Instalacion de dependencias necesarias en Python
         run: |
