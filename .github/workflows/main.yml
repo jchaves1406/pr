@@ -91,8 +91,10 @@ jobs:
           pip install boto3
           pip install xvfbwrapper
           pip install xvfbwrapper
-          sudo apt-get install xvfb
           sudo apt install python3-xvfbwrapper 
+          
+          sudo apt-get update
+          sudo apt-get install xvfb
           
           zappa deploy dev
           zappa invoke lambda_html.lambda_handler
