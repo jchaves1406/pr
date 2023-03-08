@@ -1,6 +1,6 @@
 {
     "dev": {
-        "app_function": "lambda_csv.save_csv",
+        "app_function": "lambda_csv.lambda_handler",
         "keep_warm": false,
         "role_name": "LabRole",
         "manage_roles": false,
@@ -11,7 +11,7 @@
         "aws_region": "us-east-1",
         "events": [
             {
-                "function": "lambda_csv.save_csv",
+                "function": "lambda_csv.lambda_handler",
                 "event_source": {
                     "arn": "arn:aws:s3:::landing-casas-xxx",
                     "events": [
