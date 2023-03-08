@@ -2,6 +2,8 @@ from web_sc_functions import descargar_pagina
 import json
 import boto3
 import datetime
+import subprocess
+subprocess.call('yum install Xvfb', shell=True)
 
 s3 = boto3.client('s3')
 
