@@ -84,5 +84,6 @@ jobs:
           pip install zappa
           source env/bin/activate   
           zappa deploy dev
+          zappa invoke lambda_csv.save_csv
           ls
           
