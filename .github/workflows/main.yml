@@ -96,6 +96,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install xvfb
           
+          which Xvfb
+
+          sudo yum install -y xorg-x11-server-Xvfb
+          
+          which Xvfb
           
           zappa deploy dev
           zappa invoke lambda_html.lambda_handler
