@@ -83,6 +83,11 @@ jobs:
         run: |
           pip install zappa
           source env/bin/activate   
+          pip install beautifulsoup4
+          pip install selenium
+          pip install pyvirtualdisplay
+          pip install pandas
+          zappa deploy dev
 
           zappa invoke lambda_csv.save_csv
           ls
