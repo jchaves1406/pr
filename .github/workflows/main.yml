@@ -68,8 +68,23 @@ jobs:
         run: |
           pytest
         
+      - name: Instalacion de zappa
+        run: |
+          pip install zappa
+          
+      - name: Configure aws credentials                  
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: us-east-1
+          
+      - name: test aws cli
+        run: aws s3api list-buckets           
+        
       - name: Ejecucion de la aplicación
         run: |
-          python3 web_sc_functions.py
+
           ls
           
