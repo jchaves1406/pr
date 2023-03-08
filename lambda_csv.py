@@ -28,9 +28,6 @@ def save_csv():
         'body': json.dumps(file_name_csv + " guardado.")
     }
 
-
-save_csv()
-
 # zappa deploy dev
 # test: zappa invoke apps.f
 
