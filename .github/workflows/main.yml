@@ -82,6 +82,7 @@ jobs:
       - name: Ejecucion de la aplicación
         run: |
           pip install zappa
+          source env/bin/activate   
           zappa deploy dev
           ls
           
