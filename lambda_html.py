@@ -1,7 +1,12 @@
-from web_sc_functions import descargar_pagina
 import json
 import boto3
 import datetime
+import xvfbwrapper
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from pyvirtualdisplay import Display
+import datetime
+
 
 s3 = boto3.client('s3')
 
@@ -21,6 +26,30 @@ def lambda_handler(event, context):
         'body': json.dumps(file_name + " guardado.")
     }
 
+def descargar_pagina(url):
+    display = Display(visible=0, size=(1920, 1080))
+    display.start()
+    # Ruta del driver en el archivo yml
+    ubicacion = "/home/ubuntu/Downloads/zappa/chromedriver"
+
+    servicio = Service(ubicacion)
+    options = webdriver.ChromeOptions()
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
+    options.add_argument('--disable-gpu')
+    options.add_argument('--remote-debugging-port=9222')
+    driver = webdriver.Chrome(service=servicio, options=options)
+
+    driver.get(url)
+
+    # escribir el contenido de la página en el archivo
+    archivo_html = datetime.datetime.now().strftime('%Y-%m-%d') + '.html'
+    with open("/home/ubuntu/Downloads/zappa/"+archivo_html,
+              "w", encoding='utf-8') as f:
+        f.write(driver.page_source)
+
+    driver.quit()
+    display.stop()
 
 # zappa deploy dev
 # test: zappa invoke apps.f
