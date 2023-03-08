@@ -24,7 +24,7 @@ def descargar_pagina(url):
 
     # escribir el contenido de la página en el archivo
     archivo_html = datetime.datetime.now().strftime('%Y-%m-%d') + '.html'
-    with open("/home/runner/work/pr/pr"+archivo_html,
+    with open("/home/runner/work/pr/pr/"+archivo_html,
               "w", encoding='utf-8') as f:
         f.write(driver.page_source)
 
