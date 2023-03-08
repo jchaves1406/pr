@@ -11,7 +11,7 @@ def lambda_handler(event, context):
 
     bucket_name = 'landing-casas-xxx'
     file_name = datetime.datetime.now().strftime('%Y-%m-%d') + '.html'
-    s3.upload_file("/home/ubuntu/Downloads/zappa/"
+    s3.upload_file("/home/runner/work/pr/pr/"
                    + file_name, bucket_name, file_name)
 
     return {
