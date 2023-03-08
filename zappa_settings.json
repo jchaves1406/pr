@@ -6,8 +6,8 @@
         "runtime": "python3.8",
         "keep_warm": false,
         "vpc_config": {
-            "SubnetIds": ["subnet-xxxxxx"],
-            "SecurityGroupIds": ["sg-yyyyyy"]
+            "SubnetIds": ["subnet-033845e62430af91e"],
+            "SecurityGroupIds": ["sg-06dd9bb6c853a589f"]
         },
         "environment_variables": {
             "BUCKET_NAME": "casas-final-xxx",
