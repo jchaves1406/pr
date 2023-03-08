@@ -2,28 +2,11 @@ from web_sc_functions import descargar_pagina
 import json
 import boto3
 import datetime
-import os
-import subprocess
 
 s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
     
-    try:
-        # Instalar Xvfb si no se encuentra en el entorno
-        if not os.path.exists('/opt/Xvfb'):
-            subprocess.call(['sudo', 'yum', '-y', 'install', 'xorg-x11-server-Xvfb'])
-
-        # Iniciar Xvfb
-        xvfb_process = subprocess.Popen(['Xvfb', ':0', '-screen', '0', '1024x768x24'])
-
-        # Realizar una tarea de captura de pantalla usando Xvfb
-        subprocess.call(['import', '-display', ':0', '-window', 'root', '/tmp/screenshot.png'])
-
-        # Detener Xvfb
-        # xvfb_process.kill()
-    except Exception as e:
-        print(str(e))
         
     url = "https://www.fincaraiz.com.co/finca-raiz/venta?ubicacion=casas+chapinero"
     descargar_pagina(url)
