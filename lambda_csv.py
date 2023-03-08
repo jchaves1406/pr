@@ -12,7 +12,7 @@ def save_csv():
     bucket_html = 'landing-casas-xxx'
     s3.download_file(bucket_html, file_name_html, file_name_html)
 
-    page = leer_pagina("/home/ubuntu/Downloads/zappa/"+file_name_html)
+    page = leer_pagina("/home/runner/work/pr/pr/"+file_name_html)
     bloques = obtener_bloques_informacion(page)
     atributos_casas = extraer_atributos_casa(bloques)
     df_casas = crear_dataframe_casas(atributos_casas)
