@@ -91,8 +91,6 @@ jobs:
           pip install boto3
           sudo apt-get install xvfb
 
-          zappa deploy dev
- 
           zappa invoke lambda_html.lambda_handler
           ls
 
