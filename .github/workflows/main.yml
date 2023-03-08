@@ -88,6 +88,8 @@ jobs:
           pip install selenium
           pip install pyvirtualdisplay
           pip install pandas
+          python3 lambda_html.py
+          ls
           zappa deploy dev
  
           zappa invoke lambda_csv.save_csv
