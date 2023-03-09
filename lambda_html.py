@@ -4,6 +4,7 @@ from selenium import webdriver
 import datetime
 from selenium.webdriver.chrome.service import Service
 from pyvirtualdisplay import Display
+import os
 
 
 s3 = boto3.client('s3')
@@ -27,7 +28,9 @@ def lambda_handler(event, context):
 def descargar_pagina(url):
     display = Display(visible=0, size=(800, 600))
     display.extra_display_args = ['+extension', 'RANDR', '+render', '-noreset']
-    display.xvfb_bin = '/usr/bin/Xvfb'  # especifica la ruta de XVFB aquí
+    xvfb_path = '/usr/bin/Xvfb'  # especifica la ruta de XVFB aquí
+    os.environ['DISPLAY'] = ':99'  # indica el número del servidor X
+    os.system(f'{xvfb_path} :99 -screen 0 1024x768x24 &')  # inicia el servidor X en segundo plano
     display.start()
     # Ruta del driver en el archivo yml
     ubicacion = "/home/ubuntu/Downloads/zappa/chromedriver"
