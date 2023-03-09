@@ -14,7 +14,10 @@ def lambda_handler(event, context):
     # especificar la ruta de XVFB en la variable de entorno DISPLAY
     os.environ['DISPLAY'] = ':99'
 
+    # Ruta del driver en el archivo yml
+    ubicacion = "/home/ubuntu/Downloads/zappa/chromedriver"
     driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome(service=servicio, options=options)
 
     driver.get("https://www.example.com")
 
