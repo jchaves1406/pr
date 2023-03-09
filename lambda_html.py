@@ -19,7 +19,7 @@ def lambda_handler(event, context):
     # especificar la ruta de XVFB en la variable de entorno DISPLAY
     os.environ['DISPLAY'] = ':99'
 
-    driver = webdriver.Chrome(service=servicio, options=options)
+    driver = webdriver.Chrome(service=servicio, options=chrome_options)
     url = "https://www.fincaraiz.com.co/finca-raiz/venta?ubicacion=casas+chapinero"
     driver.get(url)
 
