@@ -15,7 +15,7 @@ def lambda_handler(event, context):
     os.environ['DISPLAY'] = ':99'
 
     # Ruta del driver en el archivo yml
-    ubicacion = "/home/ubuntu/Downloads/zappa/chromedriver"
+    ubicacion = "/home/runner/work/pr/pr/chromedriver"
     driver = webdriver.Chrome(options=chrome_options)
     driver = webdriver.Chrome(service=servicio, options=options)
 
