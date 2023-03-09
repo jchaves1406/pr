@@ -8,7 +8,7 @@ import datetime
 
 def lambda_handler(event, context):
     # Ruta del driver en el archivo yml
-    ubicacion = "/home/ubuntu/Downloads/zappa/chromedriver"
+    ubicacion = "/home/runner/work/pr/pr/chromedriver"
 
     servicio = Service(ubicacion)
     options = webdriver.ChromeOptions()
@@ -28,7 +28,7 @@ def lambda_handler(event, context):
 
     # escribir el contenido de la página en el archivo
     archivo_html = datetime.datetime.now().strftime('%Y-%m-%d') + '.html'
-    with open("/home/ubuntu/Downloads/zappa/"+archivo_html,
+    with open("/home/runner/work/pr/pr/"+archivo_html,
               "w", encoding='utf-8') as f:
         f.write(driver.page_source)
 
