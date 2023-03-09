@@ -3,7 +3,12 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
 def lambda_handler(event, context):
+    # Ruta del driver en el archivo yml
+    ubicacion = "/home/runner/work/pr/pr/chromedriver"
+
+    servicio = Service(ubicacion)
     chrome_options = Options()
+    chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument("--headless")
     chrome_options.add_argument("--no-sandbox")
     chrome_options.add_argument("--disable-gpu")
@@ -14,9 +19,6 @@ def lambda_handler(event, context):
     # especificar la ruta de XVFB en la variable de entorno DISPLAY
     os.environ['DISPLAY'] = ':99'
 
-    # Ruta del driver en el archivo yml
-    ubicacion = "/home/runner/work/pr/pr/chromedriver"
-    driver = webdriver.Chrome(options=chrome_options)
     driver = webdriver.Chrome(service=servicio, options=options)
     url = "https://www.fincaraiz.com.co/finca-raiz/venta?ubicacion=casas+chapinero"
     driver.get(url)
