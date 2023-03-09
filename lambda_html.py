@@ -18,10 +18,11 @@ def lambda_handler(event, context):
     ubicacion = "/home/runner/work/pr/pr/chromedriver"
     driver = webdriver.Chrome(options=chrome_options)
     driver = webdriver.Chrome(service=servicio, options=options)
-
-    driver.get("https://www.example.com")
+    url = "https://www.fincaraiz.com.co/finca-raiz/venta?ubicacion=casas+chapinero"
+    driver.get(url)
 
     # haz scraping aquí
+    
 
     driver.quit()
 
