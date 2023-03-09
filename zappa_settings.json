@@ -1,20 +1,31 @@
 {
     "dev": {
         "app_function": "lambda_html.lambda_handler",
-        "aws_region": "us-east-1",
-        "project_name": "my-zappa-app",
-        "runtime": "python3.8",
         "keep_warm": false,
-        "vpc_config": {
-            "SubnetIds": ["subnet-033845e62430af91e"],
-            "SecurityGroupIds": ["sg-06dd9bb6c853a589f"]
-        },
+        "role_name": "LabRole",
+        "manage_roles": false,
+        "apigateway_enabled": false,
+        "project_name": "zappa",
+        "runtime": "python3.8",
+        "s3_bucket": "landing-casas-xxx",
+        "aws_region": "us-east-1",
+        "events": [
+            {
+                "function": "lambda_html.lambda_handler",
+                "event_source": {
+                    "arn": "arn:aws:s3:::landing-casas-xxx",
+                    "events": [
+                        "s3:ObjectCreated:*"
+                    ]
+                }
+            }
+        ],
         "environment_variables": {
             "BUCKET_NAME": "casas-final-xxx",
             "DISPLAY": ":99"
         },
-        "manage_roles": false,
-        "role_name": "LabRole",
-        "apigateway_enabled": true
+        "xvfb": true,
+        "slim_handler": true
     }
 }
+
