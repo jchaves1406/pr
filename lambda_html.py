@@ -1,6 +1,5 @@
 import json
 import boto3
-import xvfbwrapper
 from selenium import webdriver
 import datetime
 from selenium.webdriver.chrome.service import Service
@@ -26,7 +25,9 @@ def lambda_handler(event, context):
     }
 
 def descargar_pagina(url):
-    display = Display(visible=0, size=(1920, 1080))
+    display = Display(visible=0, size=(800, 600))
+    display.extra_display_args = ['+extension', 'RANDR', '+render', '-noreset']
+    display.xvfb_bin = '/usr/bin/Xvfb'  # especifica la ruta de XVFB aquí
     display.start()
     # Ruta del driver en el archivo yml
     ubicacion = "/home/ubuntu/Downloads/zappa/chromedriver"
