@@ -29,7 +29,7 @@ def lambda_handler(event, context):
 def descargar_pagina(url):
 
     # Ruta del driver en el archivo yml
-    ubicacion = "/home/runner/work/pr/pr/chromedriver"
+    ubicacion = "./chromedriver"
 
     servicio = Service(ubicacion)
     options = webdriver.ChromeOptions()
