@@ -1,12 +1,37 @@
 import json
 import boto3
-import os
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
 import datetime
+# import xvfbwrapper
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+# from pyvirtualdisplay import Display
+import datetime
+import os
+
+
+s3 = boto3.client('s3')
 
 def lambda_handler(event, context):
+
+    
+    url = "https://www.fincaraiz.com.co/finca-raiz/venta?ubicacion=casas+chapinero"
+    descargar_pagina(url)
+
+    bucket_name = 'landing-casas-xxx'
+    file_name = datetime.datetime.now().strftime('%Y-%m-%d') + '.html'
+    s3.upload_file("/home/runner/work/pr/pr/"
+                   + file_name, bucket_name, file_name)
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps(file_name + " guardado.")
+    }
+
+def descargar_pagina(url):
+    # display = Display(visible=0, size=(800, 600))
+    # display.extra_display_args = ['+extension', 'RANDR', '+render', '-noreset']
+    # display.xvfb_bin = '/usr/bin/Xvfb'  # especifica la ruta de XVFB aquí
+    # display.start()
     # Ruta del driver en el archivo yml
     ubicacion = "/home/runner/work/pr/pr/chromedriver"
 
@@ -23,7 +48,6 @@ def lambda_handler(event, context):
     # especificar la ruta de XVFB en la variable de entorno DISPLAY
     os.environ['DISPLAY'] = ':99'
 
-    url = "https://www.fincaraiz.com.co/finca-raiz/venta?ubicacion=casas+chapinero"
     driver.get(url)
 
     # escribir el contenido de la página en el archivo
@@ -32,14 +56,8 @@ def lambda_handler(event, context):
               "w", encoding='utf-8') as f:
         f.write(driver.page_source)
 
-    # haz scraping aquí
-    
-
     driver.quit()
-    return {
-    'statusCode': 200,
-    'body': json.dumps(" guardado.")
-    }
+    # display.stop()
 
 # zappa deploy dev
 # test: zappa invoke apps.f
